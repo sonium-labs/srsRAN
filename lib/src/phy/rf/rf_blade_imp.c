@@ -192,6 +192,14 @@ int rf_blade_open(char* args, void** h)
     goto clean_exit;
   }
 
+  // Turn on bias tee for rx1
+  printf("Turning on bias tee BT-200 on RX1...\n");
+  status = bladerf_set_bias_tee(handler->dev, BLADERF_CHANNEL_RX(0), true);
+  if (status) {
+    ERROR("Unable to enable bias tee: %s", bladerf_strerror(status));
+    goto clean_exit;
+  }
+
   status = bladerf_set_gain_mode(handler->dev, BLADERF_RX_X1, BLADERF_GAIN_MGC);
   if (status) {
     ERROR("Unable to open device: %s", bladerf_strerror(status));

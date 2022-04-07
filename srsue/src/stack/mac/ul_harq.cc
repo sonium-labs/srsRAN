@@ -239,7 +239,8 @@ void ul_harq_entity::ul_harq_process::new_grant_ul(mac_interface_phy_lte::mac_gr
           Debug("Getting Msg3 buffer payload, grant size=%d bytes", grant.tb.tbs);
           pdu_ptr = harq_entity->mux_unit->msg3_get(payload_buffer.get(), grant.tb.tbs);
           if (pdu_ptr) {
-            generate_new_tx(grant, action);
+            // generate_new_tx(grant, action); // Remove MSG3 transmission, which "requires" a legitimate SIM card to 
+                                               // avoid interfering w/ the eNB, as it will try to auth you
           } else {
             Warning("UL RAR dci available but no Msg3 on buffer");
           }

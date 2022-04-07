@@ -408,7 +408,9 @@ void ra_proc::tb_decoded_ok(const uint8_t cc_idx, const uint32_t tti)
       rntis->clear_rar_rnti();
       phy_h->set_rar_grant(grant, rar_pdu_msg.get()->get_temp_crnti());
 
-      current_ta = rar_pdu_msg.get()->get_ta_cmd();
+      // tb_decoded_ok() receives the random access response (RAR) that contains timing advance
+      current_ta = rar_pdu_msg.get()->get_ta_cmd(); // This call extracts TA from the RAR packet
+      srsran::console("/// Range found: %.2f m ///\n", current_ta*78.125); // Print current range given TA
 
       rInfo("RAPID=%d, TA=%d, T-CRNTI=0x%x",
             sel_preamble.load(),
