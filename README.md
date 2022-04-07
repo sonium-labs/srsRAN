@@ -1,12 +1,19 @@
 srsRAN
 ======
-
-[![Build Status](https://app.travis-ci.com/srsran/srsRAN.svg?branch=master)](https://app.travis-ci.com/github/srsran/srsRAN)
-[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/srsran/srsRAN.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/srsran/srsRAN/context:cpp)
-[![Coverity](https://scan.coverity.com/projects/23045/badge.svg)](https://scan.coverity.com/projects/srsran)
-
 srsRAN is a 4G/5G software radio suite developed by [SRS](http://www.srs.io).
 
+This version has been modified by [Daniel Dole-Muinos](mailto:ddolemuinos@gmail.com) for use in signals of opportunity range-finding.
+
+Minor changes have been made in the following areas:
+- Disable options in CMakeLists.txt to avoid compiling with unneeded libraries
+- Comment out MSG3 tx generation function (naive solution, but works)
+- Adds printout of calculated range given TA value after RAR reception
+- Enables Nuand BT-200 rx amp/bias tee on startup of srsUE (shown by green led)
+
+Approaches for repeated RACH transmission are outlined in the "Ways to Trigger RACH" section in the [collected notes](https://docs.google.com/document/d/1BVgUOT2Mcy1JE5aCjtZHGem7sNVcIZMlFGTSadm2Tjc/edit#). Manually-triggered TA sending has not been included in this version as there are many different layers this can be triggered in.
+
+Add'l Info 
+======
 See the [srsRAN project pages](https://www.srsran.com) for information, guides and project news.
 
 The srsRAN suite includes:
